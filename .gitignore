@@ -1,1 +1,1 @@
-Nothing should be ignored based on the provided file changes, as only a Python source file (`investment_analyzer/ui/data_module.py`) was modified and no build artifacts, dependencies, or temporary files were detected in the changes.
+Nothing should be ignored based on the provided file changes. The modification of 'investment_analyzer/ui/ai_advisor_module.py' is a source code file and does not require any additional ignore rules.
