@@ -6,7 +6,7 @@ from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
     QTableWidget, QTableWidgetItem, QHeaderView, QComboBox,
     QFrame, QGroupBox, QTreeWidget, QTreeWidgetItem, QMessageBox,
-    QFileDialog, QLineEdit, QDateEdit, QCheckBox
+    QFileDialog, QLineEdit, QDateEdit, QCheckBox, QAbstractItemView
 )
 from PyQt6.QtCore import pyqtSignal, pyqtSlot, Qt, QTimer
 from PyQt6.QtGui import QFont, QColor, QBrush

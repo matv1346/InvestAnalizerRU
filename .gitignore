@@ -1,45 +1,45 @@
-```
-# Database files
-*.db
-
-# Python
-__pycache__/
+# Compiled Python files
 *.pyc
-*.pyo
-*.pyd
-.Python
-env/
+__pycache__/
+
+# Virtual environments
+.venv/
 venv/
-.venv/
-.ENV
-.ENV.*
-.venv/
-.venv.*
-.conda/
-.envrc
-.flaskenv
-.pytest_cache/
-.mypy_cache/
-.coverage
-htmlcov/
+env/
+
+# Dependencies
+node_modules/
+
+# Build/dist directories
+build/
+dist/
+*.egg-info/
 
 # Logs
 *.log
 
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-Thumbs.db:encryptable
-
-# IDE
-.vscode/
-.idea/
+# Temporary files
+*.tmp
 *.swp
 *.swo
-*~
-```
+
+# Environment files
+.env
+.env.local
+*.env.*
+
+# IDE specific
+.vscode/
+.idea/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Type checking
+.mypy_cache/
+
+# OS generated files
+.DS_Store
+Thumbs.db

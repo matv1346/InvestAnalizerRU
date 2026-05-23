@@ -9,6 +9,9 @@ from PyQt6.QtCore import pyqtSignal, pyqtSlot, QSize
 Signal = pyqtSignal
 Slot = pyqtSlot
 
+# Экспорт для других модулей
+__all__ = ['MainNavigation', 'Signal', 'Slot']
+
 
 class MainNavigation(QTabWidget):
     """Основной навигатор приложения с вкладками"""
