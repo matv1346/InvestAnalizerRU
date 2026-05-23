@@ -286,7 +286,7 @@ class DataModule(QWidget):
         layout.addWidget(input_field)
         
         buttons = QDialogButtonBox(
-            QDialogButtonBox.Ok | QDialogButtonBox.Cancel
+            QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel
         )
         buttons.accepted.connect(dialog.accept)
         buttons.rejected.connect(dialog.reject)
