@@ -2,14 +2,14 @@
 ui/analytics_module.py - Аналитика и конструктор отчетов
 """
 
-from PySide6.QtWidgets import (
+from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
     QTabWidget, QGroupBox, QComboBox, QCheckBox, QScrollArea,
     QFrame, QMessageBox, QFileDialog, QGridLayout, QSpacerItem,
     QSizePolicy
 )
-from PySide6.QtCore import Signal, Qt
-from PySide6.QtGui import QFont
+from PyQt6.QtCore import pyqtSignal, pyqtSlot, Qt
+from PyQt6.QtGui import QFont
 
 from database import Database
 
@@ -368,4 +368,4 @@ class AnalyticsModule(QWidget):
 
 
 # Импорт для диалога ввода текста
-from PySide6.QtWidgets import QInputDialog
+from PyQt6.QtWidgets import QInputDialog

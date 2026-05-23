@@ -2,14 +2,14 @@
 ui/ai_advisor_module.py - ИИ-Советник и калькулятор ребалансировки
 """
 
-from PySide6.QtWidgets import (
+from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
     QSplitter, QTextEdit, QGroupBox, QComboBox, QDoubleSpinBox,
     QScrollArea, QFrame, QMessageBox, QProgressBar, QListWidget,
     QListWidgetItem, QSizePolicy
 )
-from PySide6.QtCore import Signal, Qt, QTimer
-from PySide6.QtGui import QFont
+from PyQt6.QtCore import pyqtSignal, pyqtSlot, Qt, QTimer
+from PyQt6.QtGui import QFont
 
 from database import Database
 

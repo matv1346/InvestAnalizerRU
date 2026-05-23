@@ -2,8 +2,12 @@
 ui/main_navigation.py - Основной навигационный компонент (QTabWidget)
 """
 
-from PySide6.QtWidgets import QTabWidget, QWidget, QVBoxLayout
-from PySide6.QtCore import Signal
+from PyQt6.QtWidgets import QTabWidget, QWidget, QVBoxLayout
+from PyQt6.QtCore import pyqtSignal
+
+# Алиас для совместимости
+Signal = pyqtSignal
+Slot = pyqtSlot
 
 
 class MainNavigation(QTabWidget):

@@ -2,14 +2,14 @@
 ui/registry_module.py - Интерактивный реестр сделок (Drill-Down)
 """
 
-from PySide6.QtWidgets import (
+from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
     QTableWidget, QTableWidgetItem, QHeaderView, QComboBox,
     QFrame, QGroupBox, QTreeWidget, QTreeWidgetItem, QMessageBox,
     QFileDialog, QLineEdit, QDateEdit, QCheckBox
 )
-from PySide6.QtCore import Signal, Qt, QTimer
-from PySide6.QtGui import QFont, QColor, QBrush
+from PyQt6.QtCore import pyqtSignal, pyqtSlot, Qt, QTimer
+from PyQt6.QtGui import QFont, QColor, QBrush
 
 from database import Database
 
