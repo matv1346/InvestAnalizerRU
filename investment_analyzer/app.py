@@ -8,22 +8,26 @@ import os
 from datetime import datetime
 from typing import Optional, Dict, Any
 
-from PySide6.QtWidgets import (
+from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QTabWidget, QLabel, QPushButton, QFrame, QSplitter,
     QTreeWidget, QTreeWidgetItem, QMessageBox, QFileDialog,
-    QStackedWidget, QToolBar, QStatusBar, QMenu, QAction,
+    QStackedWidget, QToolBar, QStatusBar, QMenu,
     QDialog, QDialogButtonBox, QLineEdit, QTextEdit, QScrollArea,
     QSizePolicy, QSpacerItem, QProgressBar
 )
-from PySide6.QtCore import (
-    Qt, Signal, Slot, QTimer, QThread, QSize, QUrl, QModelIndex,
+from PyQt6.QtCore import (
+    Qt, pyqtSignal, pyqtSlot, QTimer, QThread, QSize, QUrl, QModelIndex,
     QPropertyAnimation, QEasingCurve, QByteArray
 )
-from PySide6.QtGui import (
+from PyQt6.QtGui import (
     QIcon, QFont, QColor, QPalette, QBrush, QPixmap, QDesktopServices,
-    QActionGroup, QKeySequence, QShortcut
+    QActionGroup, QKeySequence, QShortcut, QAction
 )
+
+# Алиасы для совместимости с кодом PySide6
+Signal = pyqtSignal
+Slot = pyqtSlot
 
 # Импорт локальных модулей
 from database import get_database, Database
@@ -436,7 +440,7 @@ class InvestmentAnalyzerApp(QMainWindow):
         """Подключение сигналов между модулями"""
         # Сигналы от модуля данных
         self.data_module.files_imported.connect(self._on_files_imported)
-        self.data_module.portfolio recalculated.connect(self._on_portfolio_recalculated)
+        self.data_module.portfolio_recalculated.connect(self._on_portfolio_recalculated)
         
         # Сигналы от модуля реестра
         self.registry_module.transaction_selected.connect(self._on_transaction_selected)

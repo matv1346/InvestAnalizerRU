@@ -6,14 +6,14 @@ import os
 from datetime import datetime
 from typing import Optional, Dict, List, Any
 
-from PySide6.QtWidgets import (
+from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QSplitter, QLabel,
     QPushButton, QTreeWidget, QTreeWidgetItem, QMessageBox,
     QFileDialog, QTextEdit, QLineEdit, QFrame, QScrollArea,
     QProgressBar, QDialog, QDialogButtonBox, QGroupBox
 )
-from PySide6.QtCore import Signal, Qt, QTimer
-from PySide6.QtGui import QFont
+from PyQt6.QtCore import pyqtSignal, pyqtSlot, Qt, QTimer
+from PyQt6.QtGui import QFont
 
 from database import Database
 
