@@ -9,7 +9,7 @@ from PyQt6.QtWidgets import (
     QListWidgetItem, QSizePolicy
 )
 from PyQt6.QtCore import pyqtSignal, pyqtSlot, Qt, QTimer
-from PyQt6.QtGui import QFont
+from PyQt6.QtGui import QFont, QColor
 
 # Алиас для совместимости
 Signal = pyqtSignal
