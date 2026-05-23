@@ -11,6 +11,10 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtCore import pyqtSignal, pyqtSlot, Qt
 from PyQt6.QtGui import QFont
 
+# Алиас для совместимости
+Signal = pyqtSignal
+Slot = pyqtSlot
+
 from database import Database
 
 
@@ -35,7 +39,7 @@ class AnalyticsModule(QWidget):
         header_layout = QHBoxLayout()
         
         title_label = QLabel("📈 Аналитика и отчеты")
-        title_label.setFont(QFont("Segoe UI", 16, QFont.Bold))
+        title_label.setFont(QFont("Segoe UI", 16, QFont.Weight.Bold))
         header_layout.addWidget(title_label)
         
         header_layout.addStretch()
@@ -119,7 +123,7 @@ class AnalyticsModule(QWidget):
             "Здесь будет график доходности\n"
             "(используется pyqtgraph или QtWebEngine + ApexCharts)"
         )
-        chart_placeholder.setAlignment(Qt.AlignCenter)
+        chart_placeholder.setAlignment(Qt.AlignmentFlag.AlignCenter)
         chart_placeholder.setMinimumHeight(300)
         chart_placeholder.setStyleSheet(
             "background-color: #0f172a; border-radius: 8px; color: #94a3b8;"
@@ -133,7 +137,7 @@ class AnalyticsModule(QWidget):
         sectors_layout = QVBoxLayout(sectors_group)
         
         sectors_placeholder = QLabel("Данные о секторах будут загружены из API Мосбиржи")
-        sectors_placeholder.setAlignment(Qt.AlignCenter)
+        sectors_placeholder.setAlignment(Qt.AlignmentFlag.AlignCenter)
         sectors_placeholder.setMinimumHeight(150)
         sectors_layout.addWidget(sectors_placeholder)
         
@@ -231,7 +235,7 @@ class AnalyticsModule(QWidget):
             "Здесь появится предпросмотр графика\n"
             "после нажатия кнопки 'Построить график'"
         )
-        preview_placeholder.setAlignment(Qt.AlignCenter)
+        preview_placeholder.setAlignment(Qt.AlignmentFlag.AlignCenter)
         preview_placeholder.setMinimumHeight(350)
         preview_placeholder.setStyleSheet(
             "background-color: #0f172a; border-radius: 8px; color: #94a3b8;"
@@ -255,7 +259,7 @@ class AnalyticsModule(QWidget):
             "Круговая диаграмма распределения\n"
             "по классам активов / секторам / брокерам"
         )
-        allocation_placeholder.setAlignment(Qt.AlignCenter)
+        allocation_placeholder.setAlignment(Qt.AlignmentFlag.AlignCenter)
         allocation_placeholder.setMinimumHeight(300)
         allocation_placeholder.setStyleSheet(
             "background-color: #0f172a; border-radius: 8px; color: #94a3b8;"
@@ -269,7 +273,7 @@ class AnalyticsModule(QWidget):
         brokers_layout = QVBoxLayout(brokers_group)
         
         brokers_placeholder = QLabel("Таблица с детализацией по каждому брокеру")
-        brokers_placeholder.setAlignment(Qt.AlignCenter)
+        brokers_placeholder.setAlignment(Qt.AlignmentFlag.AlignCenter)
         brokers_placeholder.setMinimumHeight(200)
         brokers_layout.addWidget(brokers_placeholder)
         

@@ -11,6 +11,10 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtCore import pyqtSignal, pyqtSlot, Qt, QTimer
 from PyQt6.QtGui import QFont
 
+# Алиас для совместимости
+Signal = pyqtSignal
+Slot = pyqtSlot
+
 from database import Database
 
 
@@ -35,7 +39,7 @@ class AIAdvisorModule(QWidget):
         header_layout = QHBoxLayout()
         
         title_label = QLabel("🤖 ИИ-Советник")
-        title_label.setFont(QFont("Segoe UI", 16, QFont.Bold))
+        title_label.setFont(QFont("Segoe UI", 16, QFont.Weight.Bold))
         header_layout.addWidget(title_label)
         
         header_layout.addStretch()
@@ -48,7 +52,7 @@ class AIAdvisorModule(QWidget):
         main_layout.addLayout(header_layout)
         
         # Основной сплиттер
-        splitter = QSplitter(Qt.Horizontal)
+        splitter = QSplitter(Qt.Orientation.Horizontal)
         
         # Левая панель - Рекомендации ИИ
         left_panel = self._create_recommendations_panel()
@@ -72,7 +76,7 @@ class AIAdvisorModule(QWidget):
         
         # Заголовок
         rec_label = QLabel("💡 Инвестиционные рекомендации")
-        rec_label.setFont(QFont("Segoe UI", 14, QFont.Bold))
+        rec_label.setFont(QFont("Segoe UI", 14, QFont.Weight.Bold))
         layout.addWidget(rec_label)
         
         # Список рекомендаций
@@ -134,7 +138,7 @@ class AIAdvisorModule(QWidget):
         
         # Заголовок
         calc_label = QLabel("🧮 Калькулятор ребалансировки")
-        calc_label.setFont(QFont("Segoe UI", 14, QFont.Bold))
+        calc_label.setFont(QFont("Segoe UI", 14, QFont.Weight.Bold))
         layout.addWidget(calc_label)
         
         # Параметры ввода
@@ -274,13 +278,13 @@ class AIAdvisorModule(QWidget):
         
         for rec in sample_recommendations:
             item = QListWidgetItem(f"{rec['title']}\n{rec['description']}")
-            item.setData(Qt.UserRole, rec)
+            item.setData(Qt.ItemDataRole.UserRole, rec)
             
             # Цветовая кодировка приоритета
             if rec['priority'] == 'high':
-                item.setBackground(Qt.darkRed)
+                item.setBackground(QColor("#8B0000"))
             elif rec['priority'] == 'medium':
-                item.setBackground(Qt.darkYellow)
+                item.setBackground(QColor("#FFD700"))
             
             self.recommendations_list.addItem(item)
     
@@ -330,7 +334,7 @@ class AIAdvisorModule(QWidget):
             )
             return
         
-        rec_data = selected_items[0].data(Qt.UserRole)
+        rec_data = selected_items[0].data(Qt.ItemDataRole.UserRole)
         
         QMessageBox.information(
             self,

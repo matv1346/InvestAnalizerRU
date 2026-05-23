@@ -3,7 +3,7 @@ ui/main_navigation.py - Основной навигационный компон
 """
 
 from PyQt6.QtWidgets import QTabWidget, QWidget, QVBoxLayout
-from PyQt6.QtCore import pyqtSignal
+from PyQt6.QtCore import pyqtSignal, pyqtSlot, QSize
 
 # Алиас для совместимости
 Signal = pyqtSignal
@@ -21,7 +21,7 @@ class MainNavigation(QTabWidget):
         # Настройка стиля табов
         self.setMovable(True)
         self.setTabsClosable(False)
-        self.setIconSize((20, 20))
+        self.setIconSize(QSize(20, 20))
         
         # Подключение сигнала переключения таба
         self.currentChanged.connect(self._on_tab_changed)
