@@ -11,6 +11,10 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtCore import pyqtSignal, pyqtSlot, Qt, QTimer
 from PyQt6.QtGui import QFont, QColor, QBrush
 
+# Алиас для совместимости
+Signal = pyqtSignal
+Slot = pyqtSlot
+
 from database import Database
 
 
@@ -35,7 +39,7 @@ class RegistryModule(QWidget):
         header_layout = QHBoxLayout()
         
         title_label = QLabel("📋 Реестр сделок")
-        title_label.setFont(QFont("Segoe UI", 16, QFont.Bold))
+        title_label.setFont(QFont("Segoe UI", 16, QFont.Weight.Bold))
         header_layout.addWidget(title_label)
         
         header_layout.addStretch()
@@ -149,12 +153,12 @@ class RegistryModule(QWidget):
         ])
         
         header = self.transactions_table.horizontalHeader()
-        header.setSectionResizeMode(QHeaderView.Interactive)
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Interactive)
         header.setSortIndicatorShown(True)
-        header.setSortIndicator(0, Qt.DescendingOrder)
+        header.setSortIndicator(0, Qt.SortOrder.DescendingOrder)
         
-        self.transactions_table.setSelectionBehavior(QTableWidget.SelectRows)
-        self.transactions_table.setSelectionMode(QTableWidget.SingleSelection)
+        self.transactions_table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+        self.transactions_table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.transactions_table.setAlternatingRowColors(True)
         self.transactions_table.itemSelectionChanged.connect(self._on_transaction_selected)
         
@@ -179,7 +183,7 @@ class RegistryModule(QWidget):
         portfolio_item = QTreeWidgetItem([
             "Портфель", "Все брокеры", "0 ₽", "0"
         ])
-        portfolio_item.setData(0, Qt.UserRole, 'portfolio')
+        portfolio_item.setData(0, Qt.ItemDataRole.UserRole, 'portfolio')
         self.nav_tree.addTopLevelItem(portfolio_item)
         
         # Уровень 2: Брокеры
@@ -198,8 +202,8 @@ class RegistryModule(QWidget):
             broker_item = QTreeWidgetItem([
                 "Брокер", broker_name, f"{data['value']:,.0f} ₽", str(data['count'])
             ])
-            broker_item.setData(0, Qt.UserRole, 'broker')
-            broker_item.setData(1, Qt.UserRole, broker_name)
+            broker_item.setData(0, Qt.ItemDataRole.UserRole, 'broker')
+            broker_item.setData(1, Qt.ItemDataRole.UserRole, broker_name)
             portfolio_item.addChild(broker_item)
         
         # Развернуть первый уровень
@@ -225,7 +229,7 @@ class RegistryModule(QWidget):
             
             for col, value in enumerate(row_data):
                 item = QTableWidgetItem(value)
-                item.setTextAlignment(Qt.AlignCenter)
+                item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                 self.transactions_table.setItem(row_position, col, item)
         
         self._update_counts(len(sample_data))
@@ -249,10 +253,10 @@ class RegistryModule(QWidget):
     
     def _on_nav_item_clicked(self, item: QTreeWidgetItem, column: int):
         """Обработчик клика по элементу навигации"""
-        level = item.data(0, Qt.UserRole)
+        level = item.data(0, Qt.ItemDataRole.UserRole)
         
         if level == 'broker':
-            broker_name = item.data(1, Qt.UserRole)
+            broker_name = item.data(1, Qt.ItemDataRole.UserRole)
             # Drill-down до уровня брокера
             self._load_transactions({'broker': broker_name})
         elif level == 'portfolio':
@@ -261,7 +265,7 @@ class RegistryModule(QWidget):
         
         self.transaction_selected.emit({
             'level': level,
-            'data': item.data(1, Qt.UserRole) if level == 'broker' else None
+            'data': item.data(1, Qt.ItemDataRole.UserRole) if level == 'broker' else None
         })
     
     def _on_transaction_selected(self):

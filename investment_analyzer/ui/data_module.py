@@ -14,6 +14,11 @@ from PyQt6.QtWidgets import (
 )
 from PyQt6.QtCore import pyqtSignal, pyqtSlot, Qt, QTimer
 from PyQt6.QtGui import QFont
+from PyQt6.QtCore import QModelIndex
+
+# Алиас для совместимости
+Signal = pyqtSignal
+Slot = pyqtSlot
 
 from database import Database
 
@@ -40,7 +45,7 @@ class DataModule(QWidget):
         header_layout = QHBoxLayout()
         
         title_label = QLabel("📊 Управление данными")
-        title_label.setFont(QFont("Segoe UI", 16, QFont.Bold))
+        title_label.setFont(QFont("Segoe UI", 16, QFont.Weight.Bold))
         header_layout.addWidget(title_label)
         
         header_layout.addStretch()
@@ -57,7 +62,7 @@ class DataModule(QWidget):
         main_layout.addLayout(header_layout)
         
         # Основной сплиттер
-        splitter = QSplitter(Qt.Horizontal)
+        splitter = QSplitter(Qt.Orientation.Horizontal)
         
         # Левая панель - дерево файлов
         left_panel = self._create_files_panel()
@@ -81,7 +86,7 @@ class DataModule(QWidget):
         
         # Заголовок
         files_label = QLabel("📁 Загруженные отчеты")
-        files_label.setFont(QFont("Segoe UI", 12, QFont.Bold))
+        files_label.setFont(QFont("Segoe UI", 12, QFont.Weight.Bold))
         layout.addWidget(files_label)
         
         # Дерево файлов
@@ -91,7 +96,7 @@ class DataModule(QWidget):
         self.files_tree.setColumnWidth(1, 120)
         self.files_tree.setColumnWidth(2, 100)
         self.files_tree.setColumnWidth(3, 80)
-        self.files_tree.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.files_tree.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         self.files_tree.customContextMenuRequested.connect(self._on_file_context_menu)
         layout.addWidget(self.files_tree)
         
@@ -115,7 +120,7 @@ class DataModule(QWidget):
         
         # Заголовок
         chat_label = QLabel("🤖 ИИ-Парсер (обучение на фидбеке)")
-        chat_label.setFont(QFont("Segoe UI", 12, QFont.Bold))
+        chat_label.setFont(QFont("Segoe UI", 12, QFont.Weight.Bold))
         layout.addWidget(chat_label)
         
         # Область чата
@@ -351,7 +356,7 @@ class DataModule(QWidget):
         
         if reply == QMessageBox.Yes:
             # Удаление из БД
-            # report_id = selected_items[0].data(0, Qt.UserRole)
+            # report_id = selected_items[0].data(0, Qt.ItemDataRole.UserRole)
             # self.db.delete_report_file(report_id)
             
             # Обновление UI
