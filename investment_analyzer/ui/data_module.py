@@ -292,7 +292,7 @@ class DataModule(QWidget):
         buttons.rejected.connect(dialog.reject)
         layout.addWidget(buttons)
         
-        if dialog.exec() == QDialog.Accepted:
+        if dialog.exec() == QDialog.DialogCode.Accepted:
             return input_field.text(), True
         
         return '', False
