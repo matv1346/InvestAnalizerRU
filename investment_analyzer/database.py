@@ -461,6 +461,25 @@ class Database:
             cursor.execute("DELETE FROM report_files WHERE id = ?", (report_id,))
             return cursor.rowcount > 0
     
+    def get_report_by_hash(self, file_hash: str) -> Optional[Dict]:
+        """Поиск отчета по хешу файла"""
+        with self.get_connection() as conn:
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+            cursor.execute("""
+                SELECT id, broker_id, filename, file_path, file_hash, uploaded_at
+                FROM report_files
+                WHERE file_hash = ?
+            """, (file_hash,))
+            row = cursor.fetchone()
+            if row:
+                return dict(row)
+            return None
+    
+    def delete_report(self, report_id: int) -> bool:
+        """Удаление отчета по ID (каскадно удаляет транзакции)"""
+        return self.delete_report_file(report_id)
+    
     def add_asset(self, ticker: str, asset_type: str, **kwargs) -> int:
         """Добавление актива"""
         with self.get_connection() as conn:
